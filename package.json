@@ -1,0 +1,25 @@
+{
+  "name": "pyogibeop",
+  "version": "1.0.0",
+  "description": "Romanize Hangeul",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabeochoa/pyogibeop.git"
+  },
+  "keywords": [
+    "korean",
+    "hangeul",
+    "romanize",
+    "romanization"
+  ],
+  "author": "@gabeochoa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabeochoa/pyogibeop/issues"
+  },
+  "homepage": "https://github.com/gabeochoa/pyogibeop#readme"
+}
