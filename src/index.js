@@ -1,6 +1,5 @@
-var Hangul = require('hangul-disassemble');
-var _ = require('lodash');
-
+// var Hangul = require('hangul-disassemble');
+import Hangul from 'hangul-disassemble';
 const simple_vowels = {
     "ㅏ": "a",
     "ㅓ": "eo",
@@ -268,16 +267,21 @@ function romanize_vowel(jamo, options, next, prev){
     return [out, {}]
 }
 
+function get_default(object, key, default_val){
+    if(object == null || object == undefined) return default_val
+    return object[key]
+}
+
 function romanize_jamo(jamo, options, next_syl, prev_syl){
     // console.log("r_jamo" , jamo, options, next_syl, prev_syl)
     if(jamo === ""){
         return ["", {first: true}]
     }
 
-    const next_jamo = _.get(next_syl, "first", "")
-    const next_vowel = _.get(next_syl, "vowel", "")
-    const prev_jamo = _.get(prev_syl, "last", "")
-    const prev_vowel = _.get(prev_syl, "vowel", "")
+    const next_jamo = get_default(next_syl, "first", "")
+    const next_vowel = get_default(next_syl, "vowel", "")
+    const prev_jamo = get_default(prev_syl, "last", "")
+    const prev_vowel = get_default(prev_syl, "vowel", "")
     
     const next = {
         jamo: next_jamo,
@@ -303,7 +307,7 @@ function romanize_jamo(jamo, options, next_syl, prev_syl){
     return romanize_cons(jamo, options, next, prev)
 }
 
-export function romanize(word){
+export default function romanize(word){
     let syllables = Hangul.disassemble(word)
     // console.log(syllables)
     let output = []
@@ -340,5 +344,3 @@ export function romanize(word){
     // console.log("output", output, romanized)
     return romanized
 }
-
-module.exports = romanize;

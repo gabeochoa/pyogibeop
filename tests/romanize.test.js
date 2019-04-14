@@ -1,5 +1,5 @@
 
-var romanize = require('./romanization');
+var romanize = require('../src/index.js');
 
 test("assert true === true", () => {
     expect(true).toBe(true)
