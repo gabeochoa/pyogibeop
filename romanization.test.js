@@ -65,7 +65,7 @@ const examples = [
     //Note: Tense (or glottalized) sounds are not transcribed in cases where morphemes are compounded, as in the examples below.
     ["압구정", "apgujeong",],
     ["낙동강", "nakdonggang",],	
-    // ["죽변", "jukbyeon",],	
+    ["죽변", "jukbyeon",],	
     ["낙성대", "nakseongdae",],
     ["합정", "hapjeong",],	
     ["팔당", "paldang",],	

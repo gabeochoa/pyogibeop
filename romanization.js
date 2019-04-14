@@ -255,7 +255,10 @@ function romanize_vowel(jamo, options, next, prev){
         out = simple_vowels[jamo]
     }
     if(jamo in diphtongs){
-        if(['ㄱ'].includes(prev.jamo)){
+        if(
+            ['ㄱ'].includes(prev.jamo)
+            && ['ㅇ'].includes(options.me.first)
+        ){
             out = "n" + diphtongs[jamo]
         }
         else{
