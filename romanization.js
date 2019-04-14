@@ -1,4 +1,3 @@
-//https://www.korean.go.kr/front_eng/roman/roman_01.do
 var Hangul = require('hangul-disassemble');
 var _ = require('lodash');
 
@@ -10,7 +9,7 @@ const simple_vowels = {
     "ㅡ": "eu",
     "ㅣ": "i",
     "ㅐ": "ae",
-    "ㅔ": "a",
+    "ㅔ": "e",
     "ㅚ": "oe",
     "ㅟ": "w",
 }
@@ -265,7 +264,7 @@ function romanize_vowel(jamo, options, next, prev){
             out = diphtongs[jamo]
         }
     }
-    if (options.first){ out = cap(out)}
+
     return [out, {}]
 }
 
