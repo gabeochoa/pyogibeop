@@ -21,7 +21,7 @@ Include `romanize.js` into your HTML page. All is set!
 </script>
 ```
 
-### Node.js
+### Node.js / React
 
 This module can be installed via npm:
 
@@ -30,7 +30,7 @@ $ npm install @gabeochoa/pyogibeop --save
 ```
 
 ```js
-var romanize = require("romanize");
+var romanize = require('@gabeochoa/pyogibeop');
 // Converts to Latin script
 romanize("안녕하세요?") // annyeonghaseyo?
 ```
