@@ -4,7 +4,7 @@
   "description": "Romanize Hangeul",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/gabeochoa/pyogibeop/issues"
   },
-  "homepage": "https://github.com/gabeochoa/pyogibeop#readme"
+  "homepage": "https://github.com/gabeochoa/pyogibeop#readme",
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "jest-silent-reporter": "^0.1.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "hangul-disassemble": "^0.5.2"
+  }
 }
