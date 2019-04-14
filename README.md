@@ -40,6 +40,12 @@ romanize("안녕하세요?") // annyeonghaseyo?
 pyogibeop is released under the MIT License.<br />
 &copy; 2019 gabeochoa
 
+
+## Notes
+
+- all rules came from the [National Institute of Korean Language](https://www.korean.go.kr/front_eng/roman/roman_01.do)
+- check you answers on [here](http://roman.cs.pusan.ac.kr/input_eng.aspx?) as they provide different romanizations depending on use 
+
 ## Changelog 
 
 #### 0.1.8
