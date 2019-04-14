@@ -1,6 +1,6 @@
 {
   "name": "@gabeochoa/pyogibeop",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Romanize Hangeul",
   "main": "romanize.umd.js",
   "scripts": {
