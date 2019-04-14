@@ -10,6 +10,7 @@
 
 # production
 /build
+*.umd.js
 
 # misc
 .DS_Store

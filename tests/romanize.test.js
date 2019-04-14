@@ -1,5 +1,5 @@
 
-var romanize = require('../src/index.js');
+import romanize from '../src/index.js'
 
 test("assert true === true", () => {
     expect(true).toBe(true)
@@ -150,4 +150,4 @@ punctuation_words.map( (item) => {
 })
 
 // [ "표기법", "pyogibeop"],
-// 안녕하세요?
+// 안녕하세요? 

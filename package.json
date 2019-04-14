@@ -28,12 +28,10 @@
     "jest-silent-reporter": "^0.1.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.3"
-  },
-  "dependencies": {
+    "rollup-plugin-node-resolve": "^4.2.3",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "babel-jest": "^24.7.1",
-    "hangul-disassemble": "^0.5.2"
-  }
+    "babel-jest": "^24.7.1"
+  },
+  "dependencies": {}
 }

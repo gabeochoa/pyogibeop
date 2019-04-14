@@ -42,6 +42,10 @@ pyogibeop is released under the MIT License.<br />
 
 ## Changelog 
 
+#### 0.1.8
+
+* Reduce package size (was 4.41kb) 
+
 #### 0.1.7
 
 * Change way of compiling js to support usage
