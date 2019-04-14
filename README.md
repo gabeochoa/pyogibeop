@@ -14,7 +14,7 @@ Korean romanization utility for JavaScript
 Include `romanize.js` into your HTML page. All is set!
 
 ```js
-<script type="text/javascript" src="romanize.js"></script>
+<script type="text/javascript" src="romanize.min.umd.js"></script>
 <script type="text/javascript">
     // Converts to Latin script
     romanize("안녕하세요?") //annyeonghaseyo?
