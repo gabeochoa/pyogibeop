@@ -131,14 +131,23 @@ const examples = [
         좋다	johda	가곡	gagog
         조랑말	jolangmal	없었습니다.	eobs-eoss-seubnida
     */
-
-    // Extra: 
-    [ "표기법", "pyogibeop"],
 ]
-
 examples.map( (item) => {
     const [kr, en, _] = item;
     test(["Testing example", kr, "->", en].join(" "), () => {
         expect(romanize(kr).toLowerCase()).toBe(en)
     });
 })
+
+const punctuation_words = [
+    ["안녕하세요?", "annyeonghaseyo?"]
+];
+punctuation_words.map( (item) => {
+    const [kr, en] = item;
+    test(["check words with punctuation", kr, "->", en].join(" "), () => {
+        expect(romanize(kr).toLowerCase()).toBe(en)
+    });
+})
+
+// [ "표기법", "pyogibeop"],
+// 안녕하세요?

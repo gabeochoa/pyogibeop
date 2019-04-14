@@ -304,11 +304,16 @@ function romanize_jamo(jamo, options, next_syl, prev_syl){
 }
 
 export function romanize(word){
-    let syllables =  Hangul.disassemble(word)
+    let syllables = Hangul.disassemble(word)
+    // console.log(syllables)
     let output = []
     let tmp = ""
     let res = ["", {first: true, hard: false}]
     for (let i = syllables.length-1; i >= 0; i--) {
+        if(Object.keys(syllables[i]).length != 3){
+            output.push(syllables[i])
+            continue
+        }
         const {first, vowel, last} = syllables[i];
         let next = syllables[i+1]
         let prev = syllables[i-1]
