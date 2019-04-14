@@ -42,6 +42,10 @@ pyogibeop is released under the MIT License.<br />
 
 ## Changelog 
 
+#### 0.1.7
+
+* Change way of compiling js to support usage
+
 #### 0.1.1
 
 * Fix issue where punctuation would add 'undefined' to string
