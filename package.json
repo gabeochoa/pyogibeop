@@ -1,8 +1,12 @@
 {
   "name": "@gabeochoa/pyogibeop",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Romanize Hangeul",
-  "main": "romanize.umd.js",
+  "main": "romanize.min.umd.js",
+  "files": [
+    "romanize.min.umd.js",
+    "package.json"
+  ],
   "scripts": {
     "test": "jest"
   },
