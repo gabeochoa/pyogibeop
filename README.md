@@ -4,6 +4,8 @@
 
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@gabeochoa/pyogibeop.svg)
 
+![npm](https://img.shields.io/npm/dt/@gabeochoa/pyogibeop.svg)
+
 
 Korean romanization utility for JavaScript
 
