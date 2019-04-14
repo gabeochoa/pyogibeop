@@ -203,6 +203,7 @@ function romanize_cons(jamo, _options, next, prev){
         if( 
                next.is_riel && ['ㄴ'].includes(jamo)
             || prev.is_riel && ['ㄴ'].includes(jamo)
+            && !options.last
         ){
             return ["l", {}]
         }
@@ -224,19 +225,21 @@ function romanize_cons(jamo, _options, next, prev){
             return ["ch", {}]
         }
 
+        // if the ㅎ is in the badchim, just ignore it
+        // we will handle on the right side 
         if(
-            ['ㅎ'].includes(jamo)
+            ['ㅎ'].includes(jamo) 
             && options.last
         ){
             return ["", {}]
         }
 
         if(
-            ['ㅎ'].includes(jamo)
-            && prev.is_consonant
-            && !['ㄱ','ㄷ','ㅂ'].includes(prev.jamo)
+            ['ㅅ'].includes(jamo)
+            && options.last
+            && !next.is_ieung
         ){
-            return ["", {}]
+            return ["t", {}]
         }
 
         return [fricatives[jamo], {}]

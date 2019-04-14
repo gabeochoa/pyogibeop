@@ -41,28 +41,36 @@ const examples = [
     ["신라", "silla",],
     ["실라", "silla",],
     //The case of the epenthetic ㄴ and ㄹ
-    ["학여울", "hangnyeoul", ""],
-    ["항녀울", "hangnyeoul", ""],
-    ["알약", "allyak", ""],
+    ["학여울", "hangnyeoul"],
+    ["항녀울", "hangnyeoul"],
+    ["알약", "allyak"],
     // The case of palatalization
-    ["해돋이", "haedoji", ""],
-    ["같이", "gachi", ""],
-    ["가치", "gachi", ""],
-    ["굳히다", "guchida", ""],
-    ["구치다", "guchida", ""],
+    ["해돋이", "haedoji"],
+    ["같이", "gachi"],
+    ["가치", "gachi"],
+    ["굳히다", "guchida"],
+    ["구치다", "guchida"],
     // The case when ㄱ, ㄷ, ㅂ, and ㅈ are adjacent to ㅎ
-    ["좋고", "joko", ""],
-    ["조코", "joko", ""],
-    ["놓다", "nota", ""],
-    ["노타", "nota", ""],
-    // ["잡혀", "japyeo", ""],
-    ["자펴", "japyeo", ""],
-    ["낳지", "nachi", ""],
-    ["나치", "nachi", ""],
+    ["좋고", "joko"],
+    ["조코", "joko"],
+    ["놓다", "nota"],
+    ["노타", "nota"],
+    ["잡혀", "japhyeo"], // ["잡혀", "japyeo"],
+    ["자펴", "japyeo"],
+    ["낳지", "nachi"],
+    ["나치", "nachi"],
     // However, aspirated sounds are not transcribed in case of nouns where ㅎ follows ㄱ, ㄷ, and ㅂ, as in the examples below.
-    ["묵호", "mukho", ""],
-    ["집현전", "jiphyeonjeon"], // this one directly conflicts with 잡혀 will check later
-
+    ["묵호", "mukho"],
+    ["집현전", "jiphyeonjeon"], // TODO: this one directly conflicts with 잡혀 will check later
+    //Note: Tense (or glottalized) sounds are not transcribed in cases where morphemes are compounded, as in the examples below.
+    ["압구정", "apgujeong",],
+    ["낙동강", "nakdonggang",],	
+    // ["죽변", "jukbyeon",],	
+    ["낙성대", "nakseongdae",],
+    ["합정", "hapjeong",],	
+    ["팔당", "paldang",],	
+    ["샛별", "saetbyeol",],	
+    ["울산", "ulsan",],
     // Extra: 
     [ "표기법", "pyogibeop"],
 ]
