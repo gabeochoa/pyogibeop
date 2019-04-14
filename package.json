@@ -1,6 +1,6 @@
 {
   "name": "@gabeochoa/pyogibeop",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Romanize Hangeul",
   "main": "index.js",
   "scripts": {
