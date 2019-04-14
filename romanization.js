@@ -86,6 +86,41 @@ function romanize_plosive(jamo, options, next, prev){
         return ["ng", {}]
     }
 
+    // 같이 
+    if( 
+        options.last             // is a final plosive
+        && next.is_ieung         // followed by a ㅇ 
+        && ['ㅌ'].includes(jamo)  // 
+    ){
+        return ["ch", {}]
+    }
+
+    // 굳히다 - we are doing back to front
+    if(
+        ['ㄷ'].includes(jamo)          // check if there is a ㄷ
+        && options.last               // in the badchim  
+        && !options.final             // but not the final
+        && ['ㅎ'].includes(next.jamo) // next to a hieut
+    ){
+        return ["", {}]
+    }
+
+    // 돋이 
+    if(
+        ['ㄷ'].includes(jamo) // check if there is a ㄷ
+        && options.last      // in the badchim  
+        && !options.final    // but not the final
+        && next.is_ieung     // next to a hieut
+    ){
+        return ["j", {}]
+    }
+
+    if(
+        ['ㅎ'].includes(prev.jamo)
+    ){
+        return [plosives[jamo][plosives[jamo].length-1], {}]
+    }
+
     // General cases ... 
 
     // Note 1 : The sounds ㄱ, ㄷ, and ㅂ are transcribed respectively as g, d, and b before a vowel;
@@ -102,32 +137,41 @@ function romanize_plosive(jamo, options, next, prev){
 }
 
 function romanize_liquids(jamo, options, next, prev){
-    //Note 2 : ㄹ is transcribed as r before a vowel, 
-    if(next.is_vowel){
-        return ["r", {}]
-    }
-    
-    // as l before a consonant or at the end of a word: ㄹㄹ is transcribed as ll.
-    if(next.is_consonant || prev.is_riel){
-        return ["l", {}]
+
+    // Handle case where ㄹ followed by 야 여 ... 
+    if(next.is_ieung && Object.keys(diphtongs).includes(next.vowel)){
+        return ['ll', {}]
     }
 
     // Jongno 
     if(prev.is_ieung){
         return ["n", {}]
     }
-
-    if(options.first){
-        return ["r", {}] 
+    
+    // as l before a consonant or at the end of a word: ㄹㄹ is transcribed as ll.
+    if(next.is_consonant && !next.is_ieung){
+        return ["l", {}]
     }
 
+    if(prev.is_riel){
+        return ["l", {}]
+    }
+
+    //Note 2 : ㄹ is transcribed as r before a vowel, 
+    if(options.last && next.is_simple_vowel){
+        return ["r", {}]
+    }
+
+    if(options.first && Object.keys(simple_vowels).includes(options.me.vowel)){
+        return ["r", {}]
+    }
+    
     return ["l", {}]
 }
 
 function romanize_cons(jamo, _options, next, prev){
     const options = {
         ..._options,
-        is_ieung: jamo === "ㅇ",
     }
     // console.log("Consonant", jamo, options, next, prev)
  
@@ -142,11 +186,19 @@ function romanize_cons(jamo, _options, next, prev){
                 return ["t", {}]
             }
         }
+
+        if(
+            ['ㅈ'].includes(jamo)
+            && ['ㅎ'].includes(prev.jamo)
+        ){
+            return ["ch", {}]
+        }
+
         return [affricates[jamo], {}] 
     }
 
     if(jamo in nasals){
-        if(options.first && options.is_ieung) return ["", {first: true}]
+        if(options.first && jamo === "ㅇ") return ["", {first: true}]
 
         if( 
                next.is_riel && ['ㄴ'].includes(jamo)
@@ -162,6 +214,34 @@ function romanize_cons(jamo, _options, next, prev){
         return romanize_liquids(jamo, options, next, prev)
     }
 
+    if(jamo in fricatives){
+
+        // 굳히다 
+        if(
+            ['ㅎ'].includes(jamo)
+            && ['ㄷ'].includes(prev.jamo)
+        ){
+            return ["ch", {}]
+        }
+
+        if(
+            ['ㅎ'].includes(jamo)
+            && options.last
+        ){
+            return ["", {}]
+        }
+
+        if(
+            ['ㅎ'].includes(jamo)
+            && prev.is_consonant
+            && !['ㄱ','ㄷ','ㅂ'].includes(prev.jamo)
+        ){
+            return ["", {}]
+        }
+
+        return [fricatives[jamo], {}]
+    }
+
     return [consonants[jamo], {}]
 }
 
@@ -169,12 +249,7 @@ function romanize_vowel(jamo, options, next, prev){
     let out = "@"
     // console.log("vowel", jamo)
     if(jamo in simple_vowels){
-        if(false){
-            out = "@" // out = "y" + simple_vowels[jamo]
-        }
-        else{
-            out = simple_vowels[jamo]
-        }
+        out = simple_vowels[jamo]
     }
     if(jamo in diphtongs){
         if(['ㄱ'].includes(prev.jamo)){
@@ -212,6 +287,7 @@ function romanize_jamo(jamo, options, next_syl, prev_syl){
     const prev = {
         jamo: prev_jamo,
         vowel: prev_vowel,
+        is_consonant: prev_jamo in consonants,
         is_riel: prev_jamo === "ㄹ",
         is_ieung: prev_jamo === "ㅇ",
     }
@@ -233,11 +309,14 @@ export function romanize(word){
         let prev = syllables[i-1]
 
         // console.log("Syllable", syllables[i], prev, next)
-        res = romanize_jamo(first, {first: true}, next, prev)
+        let opts = { me: syllables[i], first: true}
+        res = romanize_jamo(first, opts, next, prev)
         tmp += res[0]
-        res = romanize_jamo(vowel, {vowel: true}, next, prev)
+        opts = { me: syllables[i], vowel: true}
+        res = romanize_jamo(vowel, opts, next, prev)
         tmp += res[0]
-        res = romanize_jamo(last, {last: true, final: (i===syllables.length-1)}, next, prev)
+        opts = { me: syllables[i], last: true, final: (i===syllables.length-1)}
+        res = romanize_jamo(last, opts, next, prev)
         tmp += res[0]
         output.push( tmp )
         tmp = ""
